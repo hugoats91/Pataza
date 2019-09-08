@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Movies Kotlin</string>
+
+    <string name="action_refresh">Refresh</string>
+
+    <string name="failure_network_connection">No Network Connection.</string>
+    <string name="failure_server_error">Server Error</string>
+    <string name="failure_movies_list_unavailable">Movies Unavailable.</string>
+    <string name="failure_movie_non_existent">Movie Not Existent.</string>
+
+    <string name="register_title">Registro</string>
+    <string name="register_subtitle">Antes de adoptar una mascota, registra tus \ndatos para saber un poco mas de ti</string>
+    <string name="register_name">Nombres</string>
+    <string name="register_last_name">Apellidos</string>
+    <string name="register_email">Correo electronico</string>
+    <string name="register_phone">Numero de contacto</string>
+    <string name="register_button">Registrar</string>
+    <string name="register_exist_account">¡Ya tengo una cuenta!</string>
+
+</resources>

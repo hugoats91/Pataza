@@ -1,0 +1,8 @@
+<resources>
+    <string name="login_screen_title">Login</string>
+    <string name="et_phone_email">Telefono o correo electronico</string>
+    <string name="et_password">Contraseña</string>
+    <string name="bt_enter">Entrar</string>
+    <string name="tx_forget_password">¿Olvido la contraseña?</string>
+    <string name="bt_register">Registrarse</string>
+</resources>
