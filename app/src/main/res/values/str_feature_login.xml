@@ -5,4 +5,6 @@
     <string name="bt_enter">Entrar</string>
     <string name="tx_forget_password">¿Olvido la contraseña?</string>
     <string name="bt_register">Registrarse</string>
+    <string name="login_fb">Iniciar sesion con Facebook</string>
+    <string name="login_gmail">Iniciar sesion con Gmail</string>
 </resources>

@@ -29,6 +29,7 @@ import com.app.pataza.features.movies.MovieDetailsActivity
 import com.app.pataza.features.movies.MovieView
 import com.app.pataza.features.movies.MoviesActivity
 import com.app.pataza.core.extension.empty
+import com.app.pataza.features.menu.MenuActivity
 import com.app.pataza.features.register.RegisterActivity
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -47,7 +48,8 @@ class Navigator
         }
     }
 
-    fun showRegister(context: Context) = context.startActivity(RegisterActivity.callingIntent(context))
+    fun showRegister(context: Context?){ context?.let { it.startActivity(RegisterActivity.callingIntent(it)) } }
+    fun showMenu(context: Context?){ context?.let { it.startActivity(MenuActivity.callingIntent(it)) }}
 
     private fun showMovies(context: Context) = context.startActivity(MoviesActivity.callingIntent(context))
 

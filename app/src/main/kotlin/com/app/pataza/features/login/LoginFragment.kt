@@ -22,16 +22,21 @@ import com.app.pataza.R
 import com.app.pataza.core.extension.failure
 import com.app.pataza.core.extension.observe
 import com.app.pataza.core.extension.viewModel
+import com.app.pataza.core.navigation.Navigator
 import kotlinx.android.synthetic.main.fragment_login.*
+import javax.inject.Inject
 
-class LoginFragment : BaseFragment(), View.OnClickListener {
+class LoginFragment : BaseFragment() {
     override fun layoutId() = R.layout.fragment_login
 
     private lateinit var loginViewModel: LoginViewModel
 
+    @Inject
+    lateinit var navigator: Navigator
+
     private fun initViewModel(){
         loginViewModel = viewModel(viewModelFactory) {
-            observe(userView, ::showUser)
+            observe(success, ::successLogin)
             failure(failure, ::handleBaseFailure)
         }
     }
@@ -44,21 +49,19 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        btnRegister.setOnClickListener { navigator.showRegister(context) }
+        btLogin.setOnClickListener { goLogin() }
 
     }
 
-    private fun showUser(user: User?){
-        user?.let {
-
+    private fun successLogin(success: Boolean?){
+        success?.let {
+            navigator.showMenu(context)
         }
     }
 
-    override fun onClick(p0: View?) {
-        when(p0?.id){
-            R.id.btLogin -> {
-                if(validate()) loginViewModel.doLogin(edEmail.text.toString(), edPassword.text.toString()) else notify(R.string.failure_server_error)
-            }
-        }
+    private fun goLogin(){
+        if(validate()) loginViewModel.doLogin(edEmail.text.toString(), edPassword.text.toString(), null, Login.Request.REGULAR) else notify(R.string.failure_server_error)
     }
 
     private fun validate() = edEmail.text.isNotBlank() && edPassword.text.isNotBlank()

@@ -8,4 +8,8 @@
     <color name="colorTextSecondary">#7f1a18</color>
 
     <color name="translucentBackground">#ED000000</color>
+    <color name="red">#FF0013</color>
+    <color name="orange">#FF8D00</color>
+    <color name="white">#FFFFFF</color>
+    <color name="blue">#7B92CD</color>
 </resources>

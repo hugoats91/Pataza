@@ -33,6 +33,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     </activity>
 
     <activity android:name=".features.register.RegisterActivity"/>
+    <activity android:name=".features.menu.MenuActivity"/>
 
     <activity
         android:name="com.app.pataza.features.movies.MoviesActivity">

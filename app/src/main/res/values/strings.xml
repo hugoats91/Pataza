@@ -9,7 +9,7 @@
     <string name="failure_movie_non_existent">Movie Not Existent.</string>
 
     <string name="register_title">Registro</string>
-    <string name="register_subtitle">Antes de adoptar una mascota, registra tus \ndatos para saber un poco mas de ti</string>
+    <string name="register_subtitle">Antes de adoptar una mascota, registra tus datos para saber un poco mas de ti</string>
     <string name="register_name">Nombres</string>
     <string name="register_last_name">Apellidos</string>
     <string name="register_email">Correo electronico</string>

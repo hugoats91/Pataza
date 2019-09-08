@@ -21,6 +21,7 @@ import com.app.pataza.features.movies.MovieDetailsFragment
 import com.app.pataza.features.movies.MoviesFragment
 import com.app.pataza.core.navigation.RouteActivity
 import com.app.pataza.features.login.LoginFragment
+import com.app.pataza.features.menu.MenuFragment
 import com.app.pataza.features.register.RegisterFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -35,4 +36,5 @@ interface ApplicationComponent {
     fun inject(movieDetailsFragment: MovieDetailsFragment)
     fun inject(loginFragment: LoginFragment)
     fun inject(registerFragment: RegisterFragment)
+    fun inject(menuFragment: MenuFragment)
 }

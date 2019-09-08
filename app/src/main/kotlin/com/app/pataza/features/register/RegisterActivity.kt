@@ -10,7 +10,7 @@ class RegisterActivity : BaseActivity() {
         fun callingIntent(context: Context) = Intent(context, RegisterActivity::class.java)
     }
 
-    override fun fragment() = LoginFragment()
+    override fun fragment() = RegisterFragment()
 
     override fun showToolbar() = false
 }
