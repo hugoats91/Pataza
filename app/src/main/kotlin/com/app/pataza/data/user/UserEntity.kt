@@ -1,7 +1,7 @@
 package com.app.pataza.data.user
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.app.pataza.features.login.User
 
 @Entity(tableName = "user_table")

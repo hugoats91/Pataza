@@ -15,7 +15,7 @@
  */
 package com.app.pataza.core.platform
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.app.pataza.AndroidTest
 import com.app.pataza.core.exception.Failure
 import com.app.pataza.core.exception.Failure.NetworkConnection

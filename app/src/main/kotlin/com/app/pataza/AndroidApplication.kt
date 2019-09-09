@@ -16,7 +16,7 @@
 package com.app.pataza
 
 import android.app.Application
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import com.app.pataza.core.di.ApplicationComponent
 import com.app.pataza.core.di.ApplicationModule
 import com.app.pataza.core.di.DaggerApplicationComponent

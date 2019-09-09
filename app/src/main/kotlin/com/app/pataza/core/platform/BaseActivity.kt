@@ -16,7 +16,7 @@
 package com.app.pataza.core.platform
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import com.app.pataza.R.id
 import com.app.pataza.R.layout

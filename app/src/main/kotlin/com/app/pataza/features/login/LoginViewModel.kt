@@ -1,6 +1,6 @@
 package com.app.pataza.features.login
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.app.pataza.core.platform.BaseViewModel
 import javax.inject.Inject
 

@@ -15,7 +15,7 @@
  */
 package com.app.pataza.features.movies
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.app.pataza.core.interactor.UseCase.None
 import com.app.pataza.core.platform.BaseViewModel
 import javax.inject.Inject

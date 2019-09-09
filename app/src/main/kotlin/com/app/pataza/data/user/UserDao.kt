@@ -1,7 +1,7 @@
 package com.app.pataza.data.user
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Query
+import androidx.room.Dao
+import androidx.room.Query
 
 @Dao
 interface UserDao {

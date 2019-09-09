@@ -73,7 +73,7 @@ dependencies {
   //Compile time dependencies
   kapt applicationDependencies.archComponentsCompiler
   kapt applicationDependencies.daggerCompiler
-  kapt "android.arch.persistence.room:compiler:1.0.0-rc1"
+  kapt 'androidx.room:room-compiler:2.0.0'
   compileOnly applicationDependencies.javaxAnnotation
   compileOnly applicationDependencies.javaxInject
 
@@ -92,7 +92,7 @@ dependencies {
   implementation applicationDependencies.dagger
   implementation applicationDependencies.retrofit
   implementation applicationDependencies.okhttpLoggingInterceptor
-  implementation "android.arch.persistence.room:runtime:1.0.0-rc1"
+  implementation 'androidx.room:room-runtime:2.0.0'
 
   //Unit/Integration tests dependencies
   testImplementation unitTestDependencies.kotlin

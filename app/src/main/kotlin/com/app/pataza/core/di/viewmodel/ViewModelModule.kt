@@ -15,8 +15,8 @@
  */
 package com.app.pataza.core.di.viewmodel
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.app.pataza.features.login.LoginViewModel
 import com.app.pataza.features.movies.MovieDetailsViewModel
 import com.app.pataza.features.movies.MoviesViewModel

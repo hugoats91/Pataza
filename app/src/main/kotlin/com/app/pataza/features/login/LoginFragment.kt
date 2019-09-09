@@ -61,7 +61,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun goLogin(){
-        if(validate()) loginViewModel.doLogin(edEmail.text.toString(), edPassword.text.toString(), null, Login.Request.REGULAR) else notify(R.string.failure_server_error)
+        if(validate()) loginViewModel.doLogin("nando@gmail.com", "12345", null, Login.Request.REGULAR) else notify(R.string.failure_server_error)
     }
 
     private fun validate() = edEmail.text.isNotBlank() && edPassword.text.isNotBlank()

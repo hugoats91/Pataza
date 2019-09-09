@@ -16,8 +16,8 @@
 package com.app.pataza.features.movies
 
 import android.os.Bundle
-import android.support.annotation.StringRes
-import android.support.v7.widget.StaggeredGridLayoutManager
+import androidx.annotation.StringRes
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import android.view.View
 import com.app.pataza.core.platform.BaseFragment
 import com.app.pataza.R
