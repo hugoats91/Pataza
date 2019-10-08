@@ -4,11 +4,12 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.app.pataza.features.login.LoginFragment
+import com.app.pataza.features.profile.ProfileFragment
+import com.app.pataza.features.pets.PetListFragment
 
 
 class MenuAdapter(fm: FragmentManager, private val context: Context) : FragmentPagerAdapter(fm) {
-    companion object{
+    companion object {
         const val PAGE_COUNT = 4
     }
 
@@ -17,7 +18,11 @@ class MenuAdapter(fm: FragmentManager, private val context: Context) : FragmentP
     }
 
     override fun getItem(position: Int): Fragment {
-        return LoginFragment()
+        return when(position){
+            0 -> ProfileFragment()
+            1 -> PetListFragment()
+            else -> ProfileFragment()
+        }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

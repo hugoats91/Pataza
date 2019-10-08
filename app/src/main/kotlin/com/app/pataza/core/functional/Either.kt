@@ -19,7 +19,7 @@ package com.app.pataza.core.functional
  * Represents a value of one of two possible types (a disjoint union).
  * Instances of [Either] are either an instance of [Left] or [Right].
  * FP Convention dictates that [Left] is used for "failure"
- * and [Right] is used for "success".
+ * and [Right] is used for "successPhotos".
  *
  * @see Left
  * @see Right

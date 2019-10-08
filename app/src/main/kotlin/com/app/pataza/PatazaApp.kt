@@ -20,10 +20,11 @@ import androidx.room.Room
 import com.app.pataza.core.di.ApplicationComponent
 import com.app.pataza.core.di.ApplicationModule
 import com.app.pataza.core.di.DaggerApplicationComponent
+import com.app.pataza.core.util.Prefs
 import com.app.pataza.data.user.AppDataBase
 import com.squareup.leakcanary.LeakCanary
 
-class AndroidApplication : Application() {
+class PatazaApp : Application() {
 
     val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
         DaggerApplicationComponent
@@ -34,12 +35,14 @@ class AndroidApplication : Application() {
 
     companion object{
         lateinit var database: AppDataBase
+        lateinit var prefs: Prefs
     }
 
     override fun onCreate() {
         super.onCreate()
+        prefs = Prefs(applicationContext)
         this.injectMembers()
-        this.initializeLeakDetection()
+        //this.initializeLeakDetection()
         database = Room.databaseBuilder(this, AppDataBase::class.java, "pet-database").build()
     }
 

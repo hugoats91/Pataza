@@ -7,7 +7,9 @@ import javax.inject.Singleton
 @Singleton
 class UserService
 @Inject constructor(retrofit: Retrofit) : UserApi {
-    private val userApiApi by lazy { retrofit.create(UserApi::class.java) }
+    private val userApi by lazy { retrofit.create(UserApi::class.java) }
 
-    override fun login(request: Login.Request) = userApiApi.login(request)
+    override fun login(request: Login.Request) = userApi.login(request)
+
+    override fun appResources() = userApi.appResources()
 }

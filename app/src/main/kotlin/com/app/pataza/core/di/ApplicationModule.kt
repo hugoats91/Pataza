@@ -1,55 +1,59 @@
-/**
- * Copyright (C) 2018 Fernando Cejas Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.app.pataza.core.di
 
 import android.content.Context
-import com.app.pataza.AndroidApplication
-import com.app.pataza.BuildConfig
+import com.app.pataza.PatazaApp
 import com.app.pataza.data.user.UserRepository
 import com.app.pataza.features.movies.MoviesRepository
+import com.app.pataza.features.pets.PetRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
 import javax.inject.Singleton
 
 @Module
-class ApplicationModule(private val application: AndroidApplication) {
+class ApplicationModule(private val application: PatazaApp) {
 
-    @Provides @Singleton fun provideApplicationContext(): Context = application
+    @Provides
+    @Singleton
+    fun provideApplicationContext(): Context = application
 
-    @Provides @Singleton fun provideRetrofit(): Retrofit {
+    @Provides
+    @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
                 .baseUrl("http://206.189.206.133/v1/")
-                .client(createClient())
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }
 
-    private fun createClient(): OkHttpClient {
-        val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-        if (BuildConfig.DEBUG) {
-            val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
-            okHttpClientBuilder.addInterceptor(loggingInterceptor)
-        }
-        return okHttpClientBuilder.build()
+    @Provides
+    @Singleton
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
+        val interceptor = HttpLoggingInterceptor(
+                HttpLoggingInterceptor.Logger { message -> Timber.tag("NETWORK: ").i(message) })
+        interceptor.level = HttpLoggingInterceptor.Level.BASIC
+        return interceptor
     }
 
-    @Provides @Singleton fun provideMoviesRepository(dataSource: MoviesRepository.Network): MoviesRepository = dataSource
-    @Provides @Singleton fun provideUserRepository(database: UserRepository.Impl): UserRepository = database
+    @Provides
+    @Singleton
+    fun providesOkHttpClient(tokenInterceptor: TokenInterceptor, httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient = OkHttpClient.Builder().addInterceptor(
+            httpLoggingInterceptor).addInterceptor(tokenInterceptor).build()
+
+    @Provides
+    @Singleton
+    fun provideMoviesRepository(dataSource: MoviesRepository.Network): MoviesRepository = dataSource
+
+    @Provides
+    @Singleton
+    fun provideUserRepository(dataSource: UserRepository.Impl): UserRepository = dataSource
+
+    @Provides
+    @Singleton
+    fun providePetRepository(dataSource: PetRepository.Impl): PetRepository = dataSource
 }

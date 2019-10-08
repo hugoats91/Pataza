@@ -15,6 +15,7 @@
  */
 package com.app.pataza.features.login
 
+import com.app.pataza.PatazaApp
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -24,5 +25,5 @@ class Authenticator
     //Learning purpose: We assume the user is always logged in
     //Here you should put your own logic to return whether the user
     //is authenticated or not
-    fun userLoggedIn() = false
+    fun userLoggedIn() = PatazaApp.prefs.session
 }

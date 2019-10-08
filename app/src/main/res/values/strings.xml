@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movies Kotlin</string>
+    <string name="app_name">Pataza</string>
 
     <string name="action_refresh">Refresh</string>
 
@@ -16,5 +16,26 @@
     <string name="register_phone">Numero de contacto</string>
     <string name="register_button">Registrar</string>
     <string name="register_exist_account">¡Ya tengo una cuenta!</string>
+    <string name="petlist_title">Adopta una mascota</string>
+    <string name="petlist_subtitle">Antes de adoptar una mascota, registra tus datos para saber un poco mas de ti</string>
+    <string name="tab_enviadas">Solicitudes enviadas</string>
+    <string name="tab_recibidas">Solicitudes recibidas</string>
+    <string name="txt_dar_adopcion">Dar en adopcion</string>
+    <string name="add_pet_title">Registro de la mascota</string>
+    <string name="add_pet_subtitle">Llena todos los campos para que la persona que va adoptar conozca a tu mascota</string>
+    <string name="add_hint_name">Nombre</string>
+    <string name="add_hint_years">Edad</string>
+    <string name="add_hint_height">Tamaño</string>
+    <string name="add_hint_color">Color</string>
+    <string name="add_hint_type">Raza</string>
+    <string name="add_hint_description">Descripcion</string>
+    <string name="add_hint_history">Historia de la mascota</string>
+    <string name="add_continue">Continuar</string>
+    <string name="add_subtitle_2">Toma algunas fotos de la mascota que daras en adopcion, para aumentar la posibilidad de encontrarle hogar</string>
+    <string name="tx_photo_camera">Camara</string>
+    <string name="tx_photo_gallery">Galeria</string>
+    <string name="dialog_btn_continue">Continuar</string>
+    <string name="permissions_store">Se necesita este permiso para continuar</string>
+    <string name="permissions_button">Volver a intentar</string>
 
 </resources>
