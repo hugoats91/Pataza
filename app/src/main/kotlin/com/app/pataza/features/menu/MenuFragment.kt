@@ -6,8 +6,6 @@ import com.app.pataza.R
 import com.app.pataza.core.platform.BaseFragment
 import kotlinx.android.synthetic.main.fragment_menu.*
 
-
-
 class MenuFragment : BaseFragment() {
     override fun layoutId() = R.layout.fragment_menu
 

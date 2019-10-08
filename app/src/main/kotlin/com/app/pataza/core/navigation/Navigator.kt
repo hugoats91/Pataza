@@ -30,6 +30,7 @@ import com.app.pataza.features.movies.MovieView
 import com.app.pataza.features.movies.MoviesActivity
 import com.app.pataza.core.extension.empty
 import com.app.pataza.features.menu.MenuActivity
+import com.app.pataza.features.pets.add.AddPetActivity
 import com.app.pataza.features.register.RegisterActivity
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -41,17 +42,18 @@ class Navigator
 
     private fun showLogin(context: Context) = context.startActivity(LoginActivity.callingIntent(context))
 
-    fun showMain(context: Context) {
-        when (authenticator.userLoggedIn()) {
-            true -> showMovies(context)
-            false -> showLogin(context)
+    fun showMain(context: Context?) {
+        context?.let {
+            when (authenticator.userLoggedIn()) {
+                true -> showMenu(it)
+                false -> showLogin(it)
+            }
         }
     }
 
+    fun showAddPet(context: Context?){ context?.let { it.startActivity(AddPetActivity.callingIntent(it)) } }
     fun showRegister(context: Context?){ context?.let { it.startActivity(RegisterActivity.callingIntent(it)) } }
     fun showMenu(context: Context?){ context?.let { it.startActivity(MenuActivity.callingIntent(it)) }}
-
-    private fun showMovies(context: Context) = context.startActivity(MoviesActivity.callingIntent(context))
 
     fun showMovieDetails(activity: FragmentActivity, movie: MovieView, navigationExtras: Extras) {
         val intent = MovieDetailsActivity.callingIntent(activity, movie)

@@ -24,12 +24,13 @@ import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.app.pataza.AndroidApplication
+import com.app.pataza.PatazaApp
 import com.app.pataza.R.color
 import com.app.pataza.core.di.ApplicationComponent
 import com.app.pataza.core.exception.Failure
 import com.app.pataza.core.extension.appContext
 import com.app.pataza.core.extension.viewContainer
+import com.app.pataza.core.navigation.Navigator
 import kotlinx.android.synthetic.main.toolbar.progress
 import javax.inject.Inject
 
@@ -41,15 +42,26 @@ import javax.inject.Inject
 abstract class BaseFragment : Fragment() {
 
     abstract fun layoutId(): Int
+    var btBack: View? = null
 
     val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
-        (activity?.application as AndroidApplication).appComponent
+        (activity?.application as PatazaApp).appComponent
     }
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    @Inject
+    lateinit var navigator: Navigator
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
             inflater.inflate(layoutId(), container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        btBack?.setOnClickListener {
+            activity?.finish()
+        }
+    }
 
     open fun onBackPressed() {}
 

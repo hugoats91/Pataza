@@ -37,7 +37,6 @@ import javax.inject.Inject
 
 class MoviesFragment : BaseFragment() {
 
-    @Inject lateinit var navigator: Navigator
     @Inject lateinit var moviesAdapter: MoviesAdapter
 
     private lateinit var moviesViewModel: MoviesViewModel

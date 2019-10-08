@@ -15,13 +15,16 @@
  */
 package com.app.pataza.core.di
 
-import com.app.pataza.AndroidApplication
+import com.app.pataza.PatazaApp
 import com.app.pataza.core.di.viewmodel.ViewModelModule
 import com.app.pataza.features.movies.MovieDetailsFragment
 import com.app.pataza.features.movies.MoviesFragment
 import com.app.pataza.core.navigation.RouteActivity
+import com.app.pataza.features.profile.ProfileFragment
 import com.app.pataza.features.login.LoginFragment
 import com.app.pataza.features.menu.MenuFragment
+import com.app.pataza.features.pets.PetListFragment
+import com.app.pataza.features.pets.add.AddPetFragment
 import com.app.pataza.features.register.RegisterFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -29,7 +32,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [ApplicationModule::class, ViewModelModule::class])
 interface ApplicationComponent {
-    fun inject(application: AndroidApplication)
+    fun inject(application: PatazaApp)
     fun inject(routeActivity: RouteActivity)
 
     fun inject(moviesFragment: MoviesFragment)
@@ -37,4 +40,7 @@ interface ApplicationComponent {
     fun inject(loginFragment: LoginFragment)
     fun inject(registerFragment: RegisterFragment)
     fun inject(menuFragment: MenuFragment)
+    fun inject(petListFragment: PetListFragment)
+    fun inject(profileFragment: ProfileFragment)
+    fun inject(addPetFragment: AddPetFragment)
 }

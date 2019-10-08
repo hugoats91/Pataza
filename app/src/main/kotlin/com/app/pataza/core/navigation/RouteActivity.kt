@@ -17,14 +17,14 @@ package com.app.pataza.core.navigation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.app.pataza.AndroidApplication
+import com.app.pataza.PatazaApp
 import com.app.pataza.core.di.ApplicationComponent
 import javax.inject.Inject
 
 class RouteActivity : AppCompatActivity() {
 
     private val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
-        (application as AndroidApplication).appComponent
+        (application as PatazaApp).appComponent
     }
 
     @Inject internal lateinit var navigator: Navigator
