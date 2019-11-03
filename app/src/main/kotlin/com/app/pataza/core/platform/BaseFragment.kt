@@ -77,6 +77,9 @@ abstract class BaseFragment : Fragment() {
     internal fun notify(@StringRes message: Int) =
             Snackbar.make(viewContainer, message, Snackbar.LENGTH_SHORT).show()
 
+    internal fun notify(message: String) =
+            Snackbar.make(viewContainer, message, Snackbar.LENGTH_SHORT).show()
+
     internal fun notifyWithAction(@StringRes message: Int, @StringRes actionText: Int, action: () -> Any) {
         val snackBar = Snackbar.make(viewContainer, message, Snackbar.LENGTH_INDEFINITE)
         snackBar.setAction(actionText) { _ -> action.invoke() }
@@ -86,7 +89,11 @@ abstract class BaseFragment : Fragment() {
     }
 
     protected fun handleBaseFailure(failure: Failure?){
-
+        failure?.let {
+            when(it){
+                is Failure.ServerError -> notify("Server error")
+            }
+        }
     }
 
 

@@ -1,7 +1,10 @@
 package com.app.pataza.core.di
 
 import android.content.Context
+import androidx.room.Room
 import com.app.pataza.PatazaApp
+import com.app.pataza.data.resource.ResourceRepository
+import com.app.pataza.data.user.AppDataBase
 import com.app.pataza.data.user.UserRepository
 import com.app.pataza.features.movies.MoviesRepository
 import com.app.pataza.features.pets.PetRepository
@@ -56,4 +59,8 @@ class ApplicationModule(private val application: PatazaApp) {
     @Provides
     @Singleton
     fun providePetRepository(dataSource: PetRepository.Impl): PetRepository = dataSource
+
+    @Provides
+    @Singleton
+    fun provideResourceRepository(dataSource: ResourceRepository.Impl): ResourceRepository = dataSource
 }

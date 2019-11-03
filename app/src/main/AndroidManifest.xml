@@ -3,9 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.app.pataza">
 
-    <!--Permissions-->
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <application
-        android:name="com.app.pataza.PatazaApp"
+        android:name=".PatazaApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,29 +24,31 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <!--Activities-->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <!-- Activities -->
         <activity
-            android:name="com.app.pataza.core.navigation.RouteActivity"
+            android:name=".core.navigation.RouteActivity"
             android:noHistory="true"
             android:theme="@style/AppTheme.Translucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.app.pataza.features.login.LoginActivity"/>
-
+        <activity android:name=".features.profile.login.LoginActivity" />
         <activity android:name=".features.pets.add.AddPetActivity" />
-
-        <activity android:name=".features.register.RegisterActivity" />
+        <activity android:name=".features.profile.register.RegisterActivity" />
         <activity android:name=".features.menu.MenuActivity" />
-
-        <activity android:name="com.app.pataza.features.movies.MoviesActivity" />
-
+        <activity android:name=".features.profile.edit.EditProfileActivity" />
+        <activity android:name=".features.movies.MoviesActivity" />
+        <activity android:name=".features.profile.pets.MyPetsActivity"/>
         <activity
-            android:name="com.app.pataza.features.movies.MovieDetailsActivity"
-            android:theme="@style/AppTheme.Translucent"/>
+            android:name=".features.movies.MovieDetailsActivity"
+            android:theme="@style/AppTheme.Translucent" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -44,13 +57,8 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
 </manifest>
-

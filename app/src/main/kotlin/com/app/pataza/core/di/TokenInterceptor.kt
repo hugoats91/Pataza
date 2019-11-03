@@ -13,8 +13,8 @@ class TokenInterceptor @Inject constructor() : Interceptor {
 
         val original = chain.request()
 
-        if (original.url().encodedPath().contains("user/login") && original.method() == "post"
-                || (original.url().encodedPath().contains("user/signup") && original.method() == "post")
+        if (original.url().encodedPath().contains("userView/login") && original.method() == "post"
+                || (original.url().encodedPath().contains("userView/signup") && original.method() == "post")
         ) {
             return chain.proceed(original)
         }

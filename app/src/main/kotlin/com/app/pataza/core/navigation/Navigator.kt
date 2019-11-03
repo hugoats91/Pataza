@@ -23,15 +23,16 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
 import android.view.View
 import android.widget.ImageView
-import com.app.pataza.features.login.Authenticator
-import com.app.pataza.features.login.LoginActivity
+import com.app.pataza.features.profile.login.Authenticator
+import com.app.pataza.features.profile.login.LoginActivity
 import com.app.pataza.features.movies.MovieDetailsActivity
 import com.app.pataza.features.movies.MovieView
-import com.app.pataza.features.movies.MoviesActivity
 import com.app.pataza.core.extension.empty
 import com.app.pataza.features.menu.MenuActivity
 import com.app.pataza.features.pets.add.AddPetActivity
-import com.app.pataza.features.register.RegisterActivity
+import com.app.pataza.features.profile.edit.EditProfileActivity
+import com.app.pataza.features.profile.pets.MyPetsActivity
+import com.app.pataza.features.profile.register.RegisterActivity
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -51,6 +52,8 @@ class Navigator
         }
     }
 
+    fun showMyPets(context: Context?){ context?.let { it.startActivity(MyPetsActivity.callingIntent(it)) }}
+    fun showEditProfile(context: Context?){ context?.let { it.startActivity(EditProfileActivity.callingIntent(it)) } }
     fun showAddPet(context: Context?){ context?.let { it.startActivity(AddPetActivity.callingIntent(it)) } }
     fun showRegister(context: Context?){ context?.let { it.startActivity(RegisterActivity.callingIntent(it)) } }
     fun showMenu(context: Context?){ context?.let { it.startActivity(MenuActivity.callingIntent(it)) }}

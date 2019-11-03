@@ -18,12 +18,15 @@ import com.app.pataza.core.extension.failure
 import com.app.pataza.core.extension.observe
 import com.app.pataza.core.extension.viewModel
 import com.app.pataza.core.functional.dialog.ErrorDialog
+import com.app.pataza.core.functional.view.SpinnerView
 import com.app.pataza.core.platform.BaseFragment
 import com.app.pataza.core.util.Constants
 import com.app.pataza.core.util.Utils
-import com.app.pataza.features.pets.PetViewModel
+import com.app.pataza.data.models.Color
+import com.app.pataza.data.models.Gender
+import com.app.pataza.data.models.Resource
+import com.app.pataza.data.models.Vaccine
 import kotlinx.android.synthetic.main.fragment_add_pet.*
-import kotlinx.android.synthetic.main.fragment_profile.*
 import okhttp3.MultipartBody
 import timber.log.Timber
 import java.io.File
@@ -34,22 +37,35 @@ class AddPetFragment : BaseFragment(), PhotoFragment.ActionPhoto {
     private var currentPhotoPath: String = ""
     private var listMultipartBody = ArrayList<MultipartBody.Part>()
     lateinit var adapterPhotos: PhotoAdapter
-    private lateinit var petViewModel: PetViewModel
+    private lateinit var addPetViewModel: AddPetViewModel
+    private var resources: Resource? = null
+
+    private var race: Int = 0
+    private var gender: Int = 0
+    private var size: Int = 0
+    private var allColors: ArrayList<Color>? = null
+    private var colors: ArrayList<String>? = null
+    private var genders: ArrayList<Gender>? = null
+    private var vaccines: ArrayList<Int>? = null
+    private var qualities: ArrayList<Int>? = null
+    private var diseases: ArrayList<Int>? = null
+    private var additionalRequirements: ArrayList<Int>? = null
 
     override fun layoutId() = R.layout.fragment_add_pet
 
     private fun initViewModel() {
 
-        petViewModel = viewModel(viewModelFactory) {
-            observe(successPet, ::successAddPet)
+        addPetViewModel = viewModel(viewModelFactory){
+            observe(resources, ::showResources)
+            observe(successId, ::successAddPet)
             observe(successPhotos, ::successSendPhotos)
             failure(failure, ::handleBaseFailure)
         }
     }
 
-    private fun successAddPet(success: Boolean?) {
+    private fun successAddPet(success: String?) {
         success?.let {
-
+            addPetViewModel.sendPhotos(success, listMultipartBody)
         }
     }
 
@@ -72,15 +88,77 @@ class AddPetFragment : BaseFragment(), PhotoFragment.ActionPhoto {
             fragment.listener = this
             fragment.show(fragmentManager, "photo_fragment")
         }
-        btnAdd.setOnClickListener { addNewPet() }
+        btAdd.setOnClickListener { addNewPet() }
         rvPhotos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         adapterPhotos = PhotoAdapter()
         rvPhotos.adapter = adapterPhotos
+
+        etColor.colorListener = (object : SpinnerView.ColorCallback{
+            override fun onColorSelected(positions: ArrayList<Int>) {
+                allColors?.let {
+                    colors = ArrayList(it.filterIndexed { _, cl ->  positions.any { position -> position == cl.value }}.map { label -> label.label })
+                }
+            }
+        })
+        etRace.singleListener = (object : SpinnerView.SingleCallback{
+            override fun onSingleSelected(position: Int) {
+                resources?.races?.get(position)?.let { race = it.value }
+            }
+        })
+        etGender.singleListener = (object : SpinnerView.SingleCallback{
+            override fun onSingleSelected(position: Int) {
+                genders?.get(position)?.let { gender = it.id }
+            }
+        })
+        etSize.singleListener = (object : SpinnerView.SingleCallback{
+            override fun onSingleSelected(position: Int) {
+                resources?.sizes?.get(position)?.let { size = it.value }
+            }
+        })
+        etVaccines.multipleListener = (object : SpinnerView.MultipleCallback{
+            override fun onMultipleSelected(positions: ArrayList<Int>) {
+                resources?.vaccines?.let {
+                    vaccines = ArrayList(it.filterIndexed { index, _ ->  positions.any { position -> position == index }}.map { label -> label.value })
+                }
+            }
+        })
+        etQualities.multipleListener = (object : SpinnerView.MultipleCallback{
+            override fun onMultipleSelected(positions: ArrayList<Int>) {
+                resources?.qualities?.let {
+                    qualities = ArrayList(it.filterIndexed { index, _ ->  positions.any { position -> position == index }}.map { label -> label.value })
+                }
+            }
+        })
+        etDiseases.multipleListener = (object : SpinnerView.MultipleCallback{
+            override fun onMultipleSelected(positions: ArrayList<Int>) {
+                resources?.diseases?.let {
+                    diseases = ArrayList(it.filterIndexed { index, _ ->  positions.any { position -> position == index }}.map { label -> label.value })
+                }
+            }
+        })
+
+        addPetViewModel.allResources()
         super.onViewCreated(view, savedInstanceState)
     }
 
     private fun addNewPet(){
-        petViewModel.addPet(etName.text.toString(), "08/07/2015", etColor.text.toString(), etHeight.text.toString().toDouble(), 20.0, etHistory.text.toString())
+        colors?.let {
+            addPetViewModel.addPet(etName.getText(),
+                    etMonths.getInt(),
+                    etYears.getInt(),
+                    race,
+                    it.toList(),
+                    gender,
+                    size,
+                    etWeight.getDouble(),
+                    etHistory.getText(),
+                    vaccines?.toList(),
+                    qualities?.toList(),
+                    diseases?.toList(),
+                    additionalRequirements?.toList()
+                    )
+        }
+
     }
 
     override fun onCamera() {
@@ -145,7 +223,7 @@ class AddPetFragment : BaseFragment(), PhotoFragment.ActionPhoto {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        // Result code is RESULT_OK only if the user selects an Image
+        // Result code is RESULT_OK only if the userView selects an Image
         if (resultCode == Activity.RESULT_OK)
             when (requestCode) {
                 Constants.GALLERY_REQUEST_CODE -> {
@@ -198,6 +276,29 @@ class AddPetFragment : BaseFragment(), PhotoFragment.ActionPhoto {
                     pickFromGallery()
                 }
             }
+        }
+    }
+
+    private fun showResources(resources: Resource?){
+        this.resources = resources
+        resources?.let {
+            etGender.fragment = this
+            genders = Utils.listGender()
+            genders?.let { gnd -> etGender.list = ArrayList(gnd.map { gender ->  gender.label }) }
+
+            etSize.fragment = this
+            etSize.list = ArrayList(it.sizes.map { size ->  size.label })
+
+            etRace.fragment = this
+            etRace.list = ArrayList(it.races.map { race -> race.label })
+
+            allColors = Utils.listColors()
+            allColors?.let { colors -> etColor.setupData(this, ArrayList(colors.map { color ->  color.value })) }
+
+            etVaccines.setupData(this, ArrayList(it.vaccines.map { vaccine -> vaccine.label }))
+            etQualities.setupData(this, ArrayList(it.qualities.map { quality ->  quality.label }))
+            etDiseases.setupData(this, ArrayList(it.diseases.map { disease -> disease.label }))
+
         }
     }
 }

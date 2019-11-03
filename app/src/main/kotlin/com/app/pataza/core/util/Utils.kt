@@ -3,13 +3,19 @@ package com.app.pataza.core.util
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
+import com.app.pataza.R
+import com.app.pataza.data.models.Color
+import com.app.pataza.data.models.Gender
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.text.DecimalFormat
+import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 object Utils {
     @Throws(IOException::class)
@@ -67,6 +73,11 @@ object Utils {
         return null
     }
 
+    fun formatGPS(position: Double?): String{
+        val format = DecimalFormat("0.00")
+        return format.format(position)
+    }
+
     fun makeFile(context: Context?, uri: Uri): File?{
         return try {
             context?.let {
@@ -79,5 +90,30 @@ object Utils {
             e.printStackTrace()
             null
         }
+    }
+
+    fun formatDate(template: String, year: Int, month: Int, day: Int): String{
+        val format = SimpleDateFormat(template, Locale.getDefault())
+        val c = Calendar.getInstance()
+        c.set(year, month, day)
+        return format.format(c.time)
+    }
+
+    fun listGender(): ArrayList<Gender>{
+        val list = ArrayList<Gender>()
+        list.add(Gender(1, "Macho"))
+        list.add(Gender(2, "Hembra"))
+        return list
+    }
+
+    fun listColors(): ArrayList<Color> {
+        val list = ArrayList<Color>()
+        list.add(Color(R.color.black, "#000000"))
+        list.add(Color(R.color.blue, "#7b92dc"))
+        list.add(Color(R.color.grey, "#dadada"))
+        list.add(Color(R.color.brown, "#804000"))
+        list.add(Color(R.color.green, "#008f39"))
+        list.add(Color(R.color.white, "#ffffff"))
+        return list
     }
 }

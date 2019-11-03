@@ -16,8 +16,8 @@
 package com.app.pataza.core.navigation
 
 import com.app.pataza.AndroidTest
-import com.app.pataza.features.login.Authenticator
-import com.app.pataza.features.login.LoginActivity
+import com.app.pataza.features.profile.login.Authenticator
+import com.app.pataza.features.profile.login.LoginActivity
 import com.app.pataza.features.movies.MoviesActivity
 import com.app.pataza.shouldNavigateTo
 import com.nhaarman.mockito_kotlin.whenever

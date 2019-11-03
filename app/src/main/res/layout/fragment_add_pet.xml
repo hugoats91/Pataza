@@ -88,97 +88,78 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <com.app.pataza.core.functional.view.EditTextView
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
-                android:backgroundTint="@color/orange"
-                android:fontFamily="@font/rockoflf"
-                android:hint="@string/add_hint_name"
-                android:textSize="14sp"
+                app:hint="@string/add_hint_name"
+                app:input_type="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView17" />
 
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                android:id="@+id/etYears"
-                android:layout_width="0dp"
+            <com.app.pataza.core.functional.view.SpinnerView
+                android:id="@+id/etSize"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:backgroundTint="@color/orange"
-                android:drawableEnd="@drawable/drop_arrow"
-                android:fontFamily="@font/rockoflf"
-                android:hint="@string/add_hint_years"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline7"
+                app:hint="@string/add_hint_height"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/etName" />
 
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                android:id="@+id/etHeight"
-                android:layout_width="0dp"
+            <com.app.pataza.core.functional.view.SpinnerView
+                android:id="@+id/etGender"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:backgroundTint="@color/orange"
-                android:drawableEnd="@drawable/drop_arrow"
-                android:fontFamily="@font/rockoflf"
-                android:hint="@string/add_hint_height"
-                android:textSize="14sp"
+                app:hint="@string/add_hint_gender"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline7"
-                app:layout_constraintTop_toBottomOf="@id/etName" />
-
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                android:id="@+id/etColor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:backgroundTint="@color/orange"
-                android:drawableEnd="@drawable/drop_arrow"
-                android:fontFamily="@font/rockoflf"
-                android:hint="@string/add_hint_color"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline7"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etYears" />
+                app:layout_constraintTop_toBottomOf="@id/etSize" />
 
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                android:id="@+id/etType"
-                android:layout_width="0dp"
+            <com.app.pataza.core.functional.view.SpinnerView
+                android:id="@+id/etRace"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:backgroundTint="@color/orange"
-                android:drawableEnd="@drawable/drop_arrow"
-                android:fontFamily="@font/rockoflf"
-                android:hint="@string/add_hint_type"
+                app:hint="@string/add_hint_type"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline7"
-                app:layout_constraintTop_toBottomOf="@id/etYears"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etGender"
                 android:textSize="14sp" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <com.app.pataza.core.functional.view.SpinnerView
+                android:id="@+id/etColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                app:hint="@string/add_hint_color"
+                app:type="color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etRace" />
+
+            <com.app.pataza.core.functional.view.EditTextView
                 android:id="@+id/etHistory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:backgroundTint="@color/orange"
-                android:fontFamily="@font/rockoflf"
-                android:gravity="top"
-                android:hint="@string/add_hint_history"
-                android:textSize="14sp"
+                app:hint="@string/add_hint_history"
+                app:input_type="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/etColor" />
@@ -199,6 +180,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/etHistory" />
 
+
+
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btnAddPhoto"
                 android:layout_width="50dp"
@@ -212,10 +195,112 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPhotos"
                 android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btnAddPhoto"
+                tools:listitem="@layout/item_photo"
+                tools:itemCount="1"
                 android:layout_height="wrap_content"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOptional"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/rockoflf_bold"
+                android:textSize="16sp"
+                android:textColor="@color/red"
+                android:text="@string/add_pet_optional"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvPhotos"/>
+
+            <com.app.pataza.core.functional.view.EditTextView
+                android:id="@+id/etYears"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                app:hint="@string/add_hint_only_years"
+                app:input_type="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvOptional" />
+
+            <com.app.pataza.core.functional.view.EditTextView
+                android:id="@+id/etMonths"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                app:hint="@string/add_hint_months"
+                app:input_type="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etYears" />
+
+            <com.app.pataza.core.functional.view.EditTextView
+                android:id="@+id/etWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                app:hint="@string/add_hint_weight"
+                app:input_type="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etMonths" />
+
+            <com.app.pataza.core.functional.view.SpinnerView
+                android:id="@+id/etVaccines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                app:hint="@string/add_hint_vaccines"
+                app:type="multiple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etWeight"
+                android:textSize="14sp" />
+
+            <com.app.pataza.core.functional.view.SpinnerView
+                android:id="@+id/etQualities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                app:hint="@string/add_hint_qualities"
+                app:type="multiple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etVaccines" />
+
+            <com.app.pataza.core.functional.view.SpinnerView
+                android:id="@+id/etDiseases"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                app:hint="@string/add_hint_diseases"
+                app:type="multiple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etQualities" />
+
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btAdd"
@@ -224,15 +309,17 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
                 android:background="@drawable/bg_white_stroke_red"
                 android:fontFamily="@font/rockoflf_bold"
                 android:text="@string/add_continue"
                 android:textAllCaps="false"
                 android:textColor="@color/red"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rvPhotos" />
+                app:layout_constraintTop_toBottomOf="@id/etDiseases" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline7"

@@ -1,3 +1,7 @@
 package com.app.pataza.data.models
 
-data class Race(val value: Int, val label: String)
+import com.app.pataza.data.resource.ResourceEntity
+
+data class Race(val value: Int, val label: String){
+    fun toRaceEntity() = ResourceEntity.RaceEntity(value, label)
+}

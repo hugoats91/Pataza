@@ -1,6 +1,6 @@
 package com.app.pataza.features.pets
 
-import com.app.pataza.features.pets.add.Pet
+import com.app.pataza.features.pets.add.AddPetRemote
 import okhttp3.MultipartBody
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -13,5 +13,7 @@ class PetService
 
     override fun uploadPetPhotos(petId: String, file: List<MultipartBody.Part>) = petApi.uploadPetPhotos(petId, file)
 
-    override fun addPet(request: Pet.Request) = petApi.addPet(request)
+    override fun addPet(request: AddPetRemote.Request) = petApi.addPet(request)
+
+    override fun petsByUser() = petApi.petsByUser()
 }
