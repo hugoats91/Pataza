@@ -6,6 +6,7 @@ import com.app.pataza.R
 import com.app.pataza.core.extension.failure
 import com.app.pataza.core.extension.observe
 import com.app.pataza.core.extension.viewModel
+import com.app.pataza.core.functional.dialog.ForgetPasswordDialogFragment
 import com.app.pataza.core.platform.BaseFragment
 import com.app.pataza.features.profile.UserViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -32,7 +33,13 @@ class LoginFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         btnRegister.setOnClickListener { navigator.showRegister(context) }
         btLogin.setOnClickListener { goLogin() }
+        tvForget.setOnClickListener { showForgetPasswordDialog() }
 
+    }
+
+    private fun showForgetPasswordDialog(){
+        val frag = ForgetPasswordDialogFragment.newInstance()
+        frag.show(childFragmentManager, "forget")
     }
 
     private fun successLogin(success: Boolean?) {

@@ -14,7 +14,7 @@ import com.app.pataza.R
 import com.app.pataza.core.extension.failure
 import com.app.pataza.core.extension.observe
 import com.app.pataza.core.extension.viewModel
-import com.app.pataza.core.functional.dialog.PickerFragment
+import com.app.pataza.core.functional.dialog.PickerDialogFragment
 import com.app.pataza.core.functional.dialog.DatePickerFragment
 import com.app.pataza.core.functional.dialog.ErrorDialog
 import com.app.pataza.core.functional.view.EditTextView
@@ -35,7 +35,7 @@ import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
 
-class EditProfileFragment : BaseFragment(), DatePickerFragment.Callback, PickerFragment.Callback, OnMapReadyCallback {
+class EditProfileFragment : BaseFragment(), DatePickerFragment.Callback, PickerDialogFragment.Callback, OnMapReadyCallback {
     lateinit var userViewModel: UserViewModel
     var countries: List<Country>? = null
     var codeCountry: String = ""

@@ -8,7 +8,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/etHint"
-        android:fontFamily="@font/rockoflf"
+        android:fontFamily="@font/auto_mobile_regular"
         android:layout_width="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,6 +16,7 @@
         android:layout_marginStart="4dp"
         android:textSize="12sp"
         android:visibility="gone"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"/>
 
     <androidx.appcompat.widget.AppCompatEditText
@@ -23,8 +24,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/orange"
-        android:fontFamily="@font/rockoflf"
+        android:fontFamily="@font/auto_mobile_regular"
         android:textSize="12sp"
+        android:textColor="@color/gray"
+        android:textColorHint="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

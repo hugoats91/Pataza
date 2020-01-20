@@ -23,4 +23,6 @@ class UserService
     override fun doRegister(register: Register.Request) = userApi.doRegister(register)
 
     override fun editProfile(request: Profile.Request) = userApi.editProfile(request)
+
+    override fun logout(): Call<BaseResponse<Boolean>> = userApi.logout()
 }

@@ -10,11 +10,14 @@ import com.app.pataza.features.profile.login.DoLogin
 import javax.inject.Inject
 
 class UserViewModel
-@Inject constructor(private val doLogin: DoLogin, private val editProfile: EditProfile, private val getProfile: GetProfile) : BaseViewModel() {
+@Inject constructor(private val doLogin: DoLogin, private val editProfile: EditProfile, private val getProfile: GetProfile, private val doLogout: DoLogout) : BaseViewModel() {
 
     var success: MutableLiveData<Boolean> = MutableLiveData()
+    var successLogout: MutableLiveData<Boolean> = MutableLiveData()
     var userView: MutableLiveData<UserEditView> = MutableLiveData()
     var edit: MutableLiveData<Boolean> = MutableLiveData()
+
+    fun doLogout() = doLogout(UseCase.None()){ it.either(::handleFailure, ::handleLogout)}
 
     fun doLogin(email: String, password: String?, provider: String?, type: String) = doLogin(DoLogin.Params(email, password, provider, type)) { it.either(::handleFailure, ::handleLogin) }
 
@@ -24,6 +27,10 @@ class UserViewModel
 
     private fun handleLogin(success: Boolean) {
         this.success.value = success
+    }
+
+    private fun handleLogout(success: Boolean){
+        this.successLogout.value = success
     }
 
     private fun handleProfile(userView: UserEditView) {

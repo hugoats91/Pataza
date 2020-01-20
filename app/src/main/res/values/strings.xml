@@ -64,5 +64,9 @@
     <string name="bt_pick_color">Elegir</string>
     <string name="tx_pick_color">%1$s Color</string>
     <string name="tx_pick_colors">%1$s Colores</string>
+    <string name="profile_logout">Cerrar sesion</string>
+    <string name="forget_password_title">Ingrese su correo para enviarle el codigo de seguridad</string>
+    <string name="forget_password_email">Email</string>
+    <string name="forget_password_code">Codigo de seguridad</string>
 
 </resources>

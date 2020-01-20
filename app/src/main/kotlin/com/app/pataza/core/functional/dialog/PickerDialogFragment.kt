@@ -15,12 +15,12 @@ import java.util.*
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
-class PickerFragment : DialogFragment() {
+class PickerDialogFragment : DialogFragment() {
     private var listener: Callback? = null
 
     companion object {
-        fun newInstance(list: ArrayList<String>): PickerFragment {
-            val fragment = PickerFragment()
+        fun newInstance(list: ArrayList<String>): PickerDialogFragment {
+            val fragment = PickerDialogFragment()
             val bundle = Bundle()
             bundle.putStringArrayList("list", list)
             fragment.arguments = bundle

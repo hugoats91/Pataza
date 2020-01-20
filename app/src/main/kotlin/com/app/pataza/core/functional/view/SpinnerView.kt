@@ -1,7 +1,6 @@
 package com.app.pataza.core.functional.view
 
 import android.content.Context
-import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
@@ -10,7 +9,7 @@ import android.view.View
 import android.widget.LinearLayout
 import com.app.pataza.R
 import com.app.pataza.core.functional.dialog.PickerColorFragment
-import com.app.pataza.core.functional.dialog.PickerFragment
+import com.app.pataza.core.functional.dialog.PickerDialogFragment
 import com.app.pataza.core.functional.dialog.PickerMultipleFragment
 import com.app.pataza.core.platform.BaseFragment
 import kotlinx.android.synthetic.main.view_spinner.view.*
@@ -20,7 +19,7 @@ class SpinnerView @JvmOverloads constructor(
         attrs: AttributeSet? = null,
         defStyle: Int = 0,
         defStyleRes: Int = 0
-) : LinearLayout(context, attrs, defStyle, defStyleRes), PickerFragment.Callback, PickerColorFragment.Callback, PickerMultipleFragment.Callback {
+) : LinearLayout(context, attrs, defStyle, defStyleRes), PickerDialogFragment.Callback, PickerColorFragment.Callback, PickerMultipleFragment.Callback {
 
     var list = ArrayList<String>()
     var listColor: ArrayList<Int>? = null
@@ -77,7 +76,7 @@ class SpinnerView @JvmOverloads constructor(
             TYPE_DEFAULT -> {
                 vAction.setOnClickListener {
                     fragment?.let {
-                        val frag = PickerFragment.newInstance(ArrayList(list))
+                        val frag = PickerDialogFragment.newInstance(ArrayList(list))
                         frag.setListener(this)
                         frag.show(it.fragmentManager, "list_dialog")
                     }

@@ -2,8 +2,11 @@ package com.app.pataza.core.util
 
 import android.content.Context
 import android.content.SharedPreferences
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class Prefs (context: Context) {
+@Singleton
+class Prefs @Inject constructor(context: Context) {
     private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, 0)
 
     companion object{

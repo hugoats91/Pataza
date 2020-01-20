@@ -5,6 +5,7 @@ import com.app.pataza.core.exception.Failure
 import com.app.pataza.core.exception.Failure.NoFoundUser
 import com.app.pataza.core.functional.Either
 import com.app.pataza.core.platform.NetworkHandler
+import com.app.pataza.core.util.Prefs
 import com.app.pataza.data.models.Resource
 import com.app.pataza.features.profile.login.Login
 import com.app.pataza.data.models.User
@@ -17,14 +18,23 @@ import javax.inject.Inject
 interface UserRepository {
     fun getUser(): Either<Failure, User>
     fun doLogin(email: String, password: String?, provider: String?, type: String): Either<Failure, Boolean>
+    fun doLogout(): Either<Failure, Boolean>
     fun doRegister(name: String, email: String, password: String, phone: String): Either<Failure, Boolean>
     fun getProfileAndResources(): Either<Failure, User>
     fun getProfile(): Either<Failure, UserEditView>
-    fun editProfile(name: String, phone: String, birthdate: String, address: String, country: String, latitude: Double, longitude: Double): Either<Failure, Boolean>
+    fun editProfile(name: String, phone: String, birthDate: String, address: String, country: String, latitude: Double, longitude: Double): Either<Failure, Boolean>
 
     class Impl
     @Inject constructor(private val networkHandler: NetworkHandler,
-                        private val userService: UserService) : UserRepository {
+                        private val userService: UserService,
+                        private val prefs: Prefs) : UserRepository {
+
+        override fun doLogout(): Either<Failure, Boolean> {
+            prefs.session = false
+            prefs.token = ""
+            return  Either.Right(true)
+        }
+
         override fun getUser(): Either<Failure, User> {
             PatazaApp.database.userDao().getUser().firstOrNull()?.toUser()?.let {
                 return Either.Right(it)

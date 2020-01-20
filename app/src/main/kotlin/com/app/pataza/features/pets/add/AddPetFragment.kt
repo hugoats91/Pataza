@@ -65,13 +65,17 @@ class AddPetFragment : BaseFragment(), PhotoFragment.ActionPhoto {
 
     private fun successAddPet(success: String?) {
         success?.let {
-            addPetViewModel.sendPhotos(success, listMultipartBody)
+            if(listMultipartBody.isNotEmpty()){
+                addPetViewModel.sendPhotos(success, listMultipartBody)
+            }else{
+                activity?.finish()
+            }
         }
     }
 
     private fun successSendPhotos(success: Boolean?) {
         success?.let {
-
+            activity?.finish()
         }
     }
 

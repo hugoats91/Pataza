@@ -13,8 +13,11 @@ import retrofit2.http.PUT
 
 internal interface UserApi {
 
-    @POST("userView/login")
+    @POST("user/login")
     fun login(@Body request: Login.Request): Call<BaseResponse<Login.Response>>
+
+    @POST("user/logout")
+    fun logout(): Call<BaseResponse<Boolean>>
 
     @GET("app/initialResources")
     fun appResources(): Call<BaseResponse<Resource>>

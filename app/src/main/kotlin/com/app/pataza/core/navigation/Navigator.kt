@@ -35,6 +35,11 @@ import com.app.pataza.features.profile.pets.MyPetsActivity
 import com.app.pataza.features.profile.register.RegisterActivity
 import javax.inject.Inject
 import javax.inject.Singleton
+import androidx.core.content.ContextCompat.startActivity
+import androidx.core.content.IntentCompat
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+
 
 
 @Singleton
@@ -49,6 +54,14 @@ class Navigator
                 true -> showMenu(it)
                 false -> showLogin(it)
             }
+        }
+    }
+
+    fun returnLogin(context: Context?) {
+        context?.let {
+            val intent = Intent(it, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            it.startActivity(intent)
         }
     }
 
